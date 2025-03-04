@@ -4,35 +4,38 @@ body {
 .header {
     padding: 23px;
     height: 35px;
-    background-color: rgb(255, 179, 107);
+    background-color: #485971;
     display: flex;
     column-gap: 80px;
 }
 .content1 {
     padding: 20px;
-    height: 300px;
-    background-color: rgb(255, 255, 255);
+    height: 500px;
+    background-color: #fff7eb;
     display: flex;
     column-gap: 500px;
-    font-size: 20px;
+    letter-spacing: 3px;
+    line-height: 2.5;
+    line-shadow: 2px 2px 5px rgb(94, 114, 157);
+    font-family: 'Times New Roman', serif;
+    font-size: 25px;
 
 }
 .content2 {
-    display: flex;
-    padding: 40px;
-    background-color: rgb(255, 255, 255);
-    column-gap: 792px;
+  width: 600px;
+    height: 400px:
 }
 
 }
 #bilde1 {
-    height: 350px;
+    height: 50%;
+    width: 50%;
 }
 
 }
 .footer {
     padding: 30px;
-    background-color: rgb(255, 193, 126);
+    background-color: rgb(255, 185, 111);
 }
 .headerpas {
     padding: 25px;
@@ -44,7 +47,7 @@ body {
 
 }
 .navigation {
-    background-color: #333;
+    background-color: #485971;
     overflow: hidden;
   }
   
