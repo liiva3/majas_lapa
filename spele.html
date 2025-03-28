@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spēle</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+  <header > 
+
+    <div class="navigation">
+        <nav><a href="index.html">⌂</a></nav>
+        <nav><a href="spele.html">Spēle</a></nav>
+        <nav><a href="vesture.html">Vēsture</a></nav>
+        </div>
+
+    </header>
+
+    <canvas id="myCanvas" width=800 height=500 style="background:url('https://metropolismag.com/wp-content/uploads/2021/08/Shanghai_CourtesyChenHao.jpg'); background-size: cover"> "> </canvas>
+    
+  </div>
+  <div class="footer">
+
+  </div>
+
+      <script>
+     
+       var ctx = myCanvas.getContext("2d");
+       //Vijoles mainīgie                                          
+       var violin_y = 0;
+       var VioImg = new Image();
+      VioImg.src = "https://static.vecteezy.com/system/resources/previews/001/206/505/non_2x/music-violin-png.png";
+     
+     //Nots mainīgie
+      var nots_x = 0;
+      var nots_y = 0;
+      var NotsImg = new Image();
+      NotsImg.src = "https://static.vecteezy.com/system/resources/thumbnails/009/346/118/small_2x/musical-note-flat-icon-png.png";
+    //Mainīgo lielumi 
+      const violinWidth = 120;
+      const violinHeight = 120;
+      const notsWidth = 50;
+      const notsHeight = 50;
+
+      var score = 0;
+      var nots_atrums = 4;
+      var FPS = 40;
+      var time_remaining = 60;
+    //Funkcija, kura sāk spēli no sākuma, ja tiek uzspiests "S"  
+     function restart_game() {
+     time_remaining = 60;
+     score = 0;
+     nots_atrums = 3;
+     }
+
+       //Funkcija, kura pamana, ja attēli saskaras
+       function ImagesTouching(x1, y1, img1w, img1h, x2, y2, img2w, img2h) {
+         if (x1 > x2+img2w || x1+img1w < x2) return false;  // parāk daudz pa kreisi/labi
+         if (y1 > y2+img2h || y1+img1h < y2) return false; // pārāk daudz uz augšu/leju
+         return true;  
+         }
+   //Funkcija, kas uzstaisa “kustību”
+   function Do_a_Frame () {
+  ctx.clearRect(0, 0, myCanvas.width, myCanvas.height); //Notīra fonu
+  ctx.fillStyle = "black";
+  ctx.font = "20px Arial";
+  ctx.fillText("Rezultāts: " + score, 0, 20); //Parāda rezultātu
+ 
+  violin_y = myCanvas.height - violinHeight; //Nodrošina, ka vijole ir fona apakšā
+  ctx.drawImage(VioImg, violin_x, violin_y, violinWidth, violinHeight); //Uzzīmē vijoli
+
+ctx.fillText("Atlikušais laiks: " + Math.round(time_remaining), 0, 45); //Parāda atlikušo laiku
+   if (time_remaining <= 0) { //Ja laiks ir beidzies
+        ctx.fillStyle= "red";
+        ctx.font = "bold 50px Arial";
+        ctx.textAlign="center";
+        ctx.fillText("Beigas", myCanvas.width / 2, myCanvas.height / 2); //Parāda tekstu
+        ctx.textAlign="left";
+        }
+   
+    else {
+         time_remaining = time_remaining - 1/FPS; //Citādāk laiks samazinās
+
+         nots_y = nots_y + nots_atrums; //Kustina noti uz leju pa ekrānu
+         if (nots_y > myCanvas.height) { //Ja nots ir nogājusi zem apakšas
+              nots_y= 0;                 //Novieto to atpakaļ augšā
+                nots_x= Math.random() * (myCanvas.width - notsWidth); }//Izvēlas nejaušu  x pozīcīju
+         }
+
+ctx.drawImage(NotsImg, nots_x, nots_y, notsWidth, notsHeight); //Uzzīmē noti
+       
+          if (ImagesTouching(violin_x, violin_y,violinWidth, violinHeight, nots_x, nots_y, notsWidth, notsHeight)) {  //Pārbauda, vai attēli saskaras
+           score = score + 1; //Pievieno rezultātam 1
+           nots_x= -notsWidth;
+            }
+           }
+           setInterval(Do_a_Frame, 1000/FPS);
+
+         //Funkcija, kura pārvieto attēlus, reaģējot uz taustiņu pieskārieniem
+         function MyKeyDownHandler (MyEvent) {
+          if (MyEvent.keyCode == 37 && violin_x > 0) {violin_x = violin_x - 10;} // pa kreisi
+          if (MyEvent.keyCode == 39 && violin_x + violinWidth < myCanvas.width) {violin_x = violin_x + 10;}  // pa labi
+          if (MyEvent.keyCode == 83) restart_game();                                             // S, lai atsāktu spēli
+          MyEvent.preventDefault();
+       }
+  addEventListener("keydown", MyKeyDownHandler);
+  myCanvas.width = window.innerWidth - 20;  // Aizpilda visu mājaaslapas platumu
+  myCanvas.height = window.innerHeight - 20;  // Aizpilda visu mājaslapas augstumu
+ </script>
+</body>
+</html>
+
+
