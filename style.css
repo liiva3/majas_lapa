@@ -48,7 +48,7 @@ img {
 
 .footer {
   height: 60px;
-  height = window.innerHeight - 10;
+  padding: 10px;
   background-color: rgb(159, 108, 53);
 }
 

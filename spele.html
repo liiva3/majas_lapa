@@ -23,23 +23,24 @@
   </div>
   <div class="footer">
 
-  </div>
+  </div> 
 
       <script>
-     
+        const myCanvas = document.getElementById("myCanvas");
        var ctx = myCanvas.getContext("2d");
        //Vijoles mainīgie                                          
        var violin_y = 0;
        var violin_x = 0;
-       var VioImg = new Image();
+       const VioImg = new Image();
       VioImg.src = "https://static.vecteezy.com/system/resources/previews/001/206/505/non_2x/music-violin-png.png";
      
      //Nots mainīgie
       var nots_x = 0;
       var nots_y = 0;
-      var NotsImg = new Image();
+      const NotsImg = new Image();
       NotsImg.src = "https://static.vecteezy.com/system/resources/thumbnails/009/346/118/small_2x/musical-note-flat-icon-png.png";
-    //Mainīgo lielumi 
+    
+      //Mainīgo lielumi 
       const violinWidth = 120;
       const violinHeight = 120;
       const notsWidth = 50;
@@ -58,21 +59,22 @@
 
        //Funkcija, kura pamana, ja attēli saskaras
        function ImagesTouching(x1, y1, img1w, img1h, x2, y2, img2w, img2h) {
-         if (x1 > x2+img2w || x1+img1w < x2) return false;  // parāk daudz pa kreisi/labi
-         if (y1 > y2+img2h || y1+img1h < y2) return false; // pārāk daudz uz augšu/leju
+         if (x1 >= x2+img2w || x1+img1w <= x2) return false;  // parāk daudz pa kreisi/labi
+         if (y1 >= y2+img2h || y1+img1h <= y2) return false; // pārāk daudz uz augšu/leju
          return true;  
          }
+
    //Funkcija, kas uzstaisa “kustību”
    function Do_a_Frame () {
   ctx.clearRect(0, 0, myCanvas.width, myCanvas.height); //Notīra fonu
   ctx.fillStyle = "black";
   ctx.font = "20px Arial";
-  ctx.fillText("Rezultāts: " + score, 0, 20); //Parāda rezultātu
+  ctx.fillText("Rezultāts: " + score, 20, 40); //Parāda rezultātu
  
   violin_y = myCanvas.height - violinHeight; //Nodrošina, ka vijole ir fona apakšā
   ctx.drawImage(VioImg, violin_x, violin_y, violinWidth, violinHeight); //Uzzīmē vijoli
 
-ctx.fillText("Atlikušais laiks: " + Math.round(time_remaining), 0, 45); //Parāda atlikušo laiku
+ctx.fillText("Atlikušais laiks: " + Math.round(time_remaining), 20, 60); //Parāda atlikušo laiku
    if (time_remaining <= 0) { //Ja laiks ir beidzies
         ctx.fillStyle= "red";
         ctx.font = "bold 50px Arial";
