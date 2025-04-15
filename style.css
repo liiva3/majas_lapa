@@ -9,6 +9,7 @@ body {
   background-color: #485971;
   display: flex;
   column-gap: 80px;
+ 
 }
 
 .content {
@@ -50,6 +51,7 @@ img {
   height: 60px;
   padding: 10px;
   background-color: rgb(159, 108, 53);
+  display: flex;
 }
 
 .headerpas {
@@ -72,9 +74,9 @@ img {
   float: left;
   color: #f2f2f2;
   text-align: center;
-  padding: 25px 40px;
+  padding: 30px 40px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 /* Change the color of links on hover */
