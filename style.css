@@ -21,7 +21,7 @@ body {
   .content1 {
     width: 1300px;
     padding: 60px;
-    display: flex;
+    display: block;
     column-gap: 200px;
     letter-spacing: 3px;
     line-height: 2.5;
@@ -38,6 +38,19 @@ body {
     flex-wrap: wrap;
    
   
+  }
+  .vijolesApraksts {
+    display: block;
+    height: 800px;
+    background: url(https://img.freepik.com/free-photo/grunge-vintage-old-paper-background_1373-431.jpg?t=st=1745858187~exp=1745861787~hmac=6681b80a10528595f9ab32cf1981287560973c8fe230cee4095264e7a1a7b597&w=1380);
+    padding: 60px;
+    letter-spacing: 3px;
+    line-height: 2.5;
+    text-shadow: 2px 2px 5px rgb(51, 52, 52);
+    font-family: 'Times New Roman', serif;
+    font-size: 25px;
+  
+
   }
   .contentmaciba {
     background: url(https://img.freepik.com/free-photo/grunge-vintage-old-paper-background_1373-431.jpg?t=st=1745858187~exp=1745861787~hmac=6681b80a10528595f9ab32cf1981287560973c8fe230cee4095264e7a1a7b597&w=1380);
